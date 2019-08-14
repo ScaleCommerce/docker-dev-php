@@ -8,7 +8,7 @@ This image is for php development. It provides:
 * Adminer
 
 ## Docroot & Tools
-The default docroot is `/var/www/dev-php` but you can override this via the environment variable `DOCRROT`. Adminer is available in your browser at the url `/_adminer`.
+The default docroot is `/var/www/dev-php` but you can override this via the environment variable `DOCRROT`. Adminer is available in your browser at the url `/_adminer`, phpinfo() is available at `/_phpinfo`.
 
 ## Usage
 On Mac OS X run `docker run -tid --name php-dev  -v $(pwd):/var/www/dev-php -p 127.0.0.1:80:80 scalecommerce/dev-php:<version>`. Then point your browser to http://localhost/ to access the site.

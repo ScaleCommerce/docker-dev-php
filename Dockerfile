@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ENV PHP=7.3 \
+ENV PHP=7.2 \
     ADMINER=4.7.2 \
     SERVERNAME=dev-php.local \
     WORKDIR=/var/www/dev-php \
@@ -44,6 +44,7 @@ RUN apt-get update && \
     mkdir -p $WORKDIR && chown www-data:www-data $WORKDIR && \
     mkdir -p /var/www/adminer && \
     curl -sSL https://github.com/vrana/adminer/releases/download/v${ADMINER}/adminer-${ADMINER}-mysql-en.php > /var/www/adminer/index.php && \
+    mkdir -p /var/www/phpinfo && mv /info.php /var/www/phpinfo/index.php && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     apt-get -y purge $BUILD_PACKAGES && \
