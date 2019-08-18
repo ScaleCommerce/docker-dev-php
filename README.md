@@ -49,6 +49,7 @@ and then start up the stack with `docker-compose up -d`.
 Currently the following php modules are installed. Open a PR if you need more.
 ```
 [PHP Modules]
+amqp
 bcmath
 bz2
 calendar
@@ -63,13 +64,17 @@ filter
 ftp
 gd
 gettext
+gmp
 hash
 iconv
 igbinary
+imagick
 intl
 json
 libxml
 mbstring
+memcached
+msgpack
 mysqli
 mysqlnd
 openssl

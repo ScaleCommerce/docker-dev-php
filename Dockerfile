@@ -21,6 +21,10 @@ RUN apt-get update && \
     php${PHP} \
     libapache2-mod-php${PHP} \
     php-redis \
+    php-memcached \
+    php-imagick \
+    php-amqp \
+    php${PHP}-gmp \
     php${PHP}-bcmath \
     php${PHP}-bz2 \
     php${PHP}-cli \
