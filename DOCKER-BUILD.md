@@ -12,7 +12,7 @@ Apply your changes or fix bugs. Try to build a local version:
 
 Check Modules with: `docker run --rm scalecommerce-dev-php:local php -m`
 
-If everything works increase version number `echo $(( $(cat version) + 1 )) > version` commit and push to `master`.This will trigger a new `latest` tag build on Docker Hub.
+If everything works increase version number `echo $(( $(cat version) + 1 )) > version` commit and only push to master branch `git push origin master`. This will trigger a new `latest` tag build on Docker Hub.
 
 3. Build Imgaes for each php major version
 Iterate through all php major versions and trigger a build on Docker Hub. You can use this helper script: `build-php-versions.sh`
