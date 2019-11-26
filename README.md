@@ -50,6 +50,7 @@ Currently the following php modules are installed. Open a PR if you need more.
 ```
 [PHP Modules]
 amqp
+apcu
 bcmath
 bz2
 calendar
