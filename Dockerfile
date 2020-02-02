@@ -17,6 +17,7 @@ RUN apt-get update && \
     echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" >> /etc/apt/sources.list && \
     apt-get update && \
     apt-get -y install --no-install-recommends curl nano ca-certificates unzip git \
+    libvips42 libvips-tools \
     apache2 \
     php${PHP} \
     libapache2-mod-php${PHP} \

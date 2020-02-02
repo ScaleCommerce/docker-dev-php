@@ -6,6 +6,7 @@ This image is for php development. It provides:
 * PHP (see Tags for available versions)
 * Composer
 * Adminer
+* libvips image library (https://libvips.github.io/libvips/)
 
 ## Docroot & Tools
 The default docroot is `/var/www/dev-php` but you can override this via the environment variable `DOCRROT`. Adminer is available in your browser at the url `/_adminer`, phpinfo() is available at `/_phpinfo`.
@@ -14,14 +15,14 @@ The default docroot is `/var/www/dev-php` but you can override this via the envi
 On Mac OS X run `docker run -tid --name php-dev  -v $(pwd):/var/www/dev-php -p 127.0.0.1:80:80 scalecommerce/dev-php:<version>`. Then point your browser to http://localhost/ to access the site.
 
 ## Docker-Compose Example
-Here's a simply example using this image with docker-compose. Put this in your `docker-compose.yml`:
+Here's a simple example using this image with docker-compose. Put this in your `docker-compose.yml`:
 ```
 version: "3.5"
 services:
 
   php:
     working_dir: /var/www/dev-php
-    image: scalecommerce/dev-php:7.3.8
+    image: scalecommerce/dev-php:7.3.14-v4
     volumes:
       - .:/var/www/dev-php:cached
     environment:
