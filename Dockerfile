@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ENV PHP=7.3 \
+ENV PHP=7.4 \
     ADMINER=4.7.2 \
     SERVERNAME=dev-php.local \
     WORKDIR=/var/www/dev-php \
