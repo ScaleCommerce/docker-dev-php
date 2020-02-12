@@ -108,6 +108,7 @@ xml
 xmlreader
 xmlwriter
 xsl
+vips
 Zend OPcache
 zip
 zlib
