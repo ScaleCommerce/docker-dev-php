@@ -103,12 +103,12 @@ sysvmsg
 sysvsem
 sysvshm
 tokenizer
+vips
 wddx
 xml
 xmlreader
 xmlwriter
 xsl
-vips
 Zend OPcache
 zip
 zlib
