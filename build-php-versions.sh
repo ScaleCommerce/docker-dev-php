@@ -3,7 +3,7 @@
 # exit when any command fails
 set -e
 
-for php in 7.3 7.0 7.1 7.2 7.4
+for php in 7.0 7.1 7.2 7.4 7.3
   do 
     echo "### Switching PHP Version in Dockerfile to $php"
     sed -i '' -E "s/ PHP=[[:digit:]]\.[[:digit:]] / PHP=$php /" Dockerfile
