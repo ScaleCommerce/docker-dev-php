@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ENV PHP=7.4 \
+ENV PHP=7.3 \
     ADMINER=4.7.2 \
     SERVERNAME=dev-php.local \
     WORKDIR=/var/www/dev-php \
@@ -26,6 +26,7 @@ RUN apt-get update && \
     php-redis \
     php-memcached \
     php-imagick \
+    jpegoptim \
     php-amqp \
     php-apcu \
     php${PHP}-gmp \
