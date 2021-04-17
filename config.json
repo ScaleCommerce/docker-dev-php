@@ -1,0 +1,13 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "applications/php"
+        }
+    },
+    "applications": {
+        "php": {
+            "type": "php 8.0",
+            "root": "/srv/"
+        }
+    }
+}
