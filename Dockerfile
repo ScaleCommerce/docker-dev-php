@@ -1,34 +1,32 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-ENV PHP=7.3 \
-    ADMINER=4.7.2 \
+ENV PHP=7.0 \
+    ADMINER=4.8.1 \
     SERVERNAME=dev-php.local \
     WORKDIR=/var/www/dev-php \
     DOCROOT=/var/www/dev-php/public \
     DEBIAN_FRONTEND=noninteractive \
-    BUILD_PACKAGES=gnupg
+    BUILD_PACKAGES=software-properties-common
 
 COPY files/ /
 
 RUN apt-get update && \
-    apt-get -y dist-upgrade && \
     apt-get -y install --no-install-recommends $BUILD_PACKAGES && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C && \
-    echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" >> /etc/apt/sources.list && \
-    apt-get -y install --no-install-recommends software-properties-common && \ 
-    add-apt-repository ppa:dhor/myway && \
+    add-apt-repository ppa:ondrej/php && \
+    add-apt-repository ppa:openswoole/ppa && \
     apt-get update && \
-    apt-get -y install --no-install-recommends curl nano ca-certificates unzip git software-properties-common pkg-config \
-    libvips42 libvips-tools libvips-dev \
+    apt-get -y dist-upgrade && \
+    apt-get -y install --no-install-recommends curl nano ca-certificates unzip git \
+    libvips42 libvips-tools \
     apache2 \
-    php${PHP} php${PHP}-dev php-pear \
+    php${PHP} \
     libapache2-mod-php${PHP} \
-    php-redis \
-    php-memcached \
-    php-imagick \
+    php${PHP}-redis \
+    php${PHP}-memcached \
+    php${PHP}-imagick \
     jpegoptim \
-    php-amqp \
-    php-apcu \
+    php${PHP}-amqp \
+    php${PHP}-apcu \
     php${PHP}-gmp \
     php${PHP}-bcmath \
     php${PHP}-bz2 \
@@ -36,7 +34,6 @@ RUN apt-get update && \
     php${PHP}-curl \
     php${PHP}-gd \
     php${PHP}-intl \
-    php${PHP}-json \
     php${PHP}-mbstring \
     php${PHP}-mysql \
     php${PHP}-opcache \
@@ -44,10 +41,9 @@ RUN apt-get update && \
     php${PHP}-soap \
     php${PHP}-sqlite3 \
     php${PHP}-xml \
+    php${PHP}-vips \
     php${PHP}-zip && \
-    echo "extension=vips.so" > /etc/php/${PHP}/mods-available/vips.ini && \
-    ln -sf /etc/php/${PHP}/mods-available/vips.ini /etc/php/${PHP}/cli/conf.d/20-vips.ini && \
-    ln -sf /etc/php/${PHP}/mods-available/vips.ini /etc/php/${PHP}/apache2/conf.d/20-vips.ini && \
+    apt-cache pkgnames | grep php${PHP}-openswoole | xargs apt-get -y install --no-install-recommends && \
     a2enmod rewrite && \
     rm -rf /etc/apache2/sites-enabled/000-default.conf /var/www/html && \
     echo 'ServerName $SERVERNAME' >>/etc/apache2/apache2.conf && \
@@ -59,8 +55,7 @@ RUN apt-get update && \
     mkdir -p /var/www/phpinfo && mv /info.php /var/www/phpinfo/index.php && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
-    pecl install vips && \
-    apt-get -y purge $BUILD_PACKAGES libvips-dev php${PHP}-dev php-pear pkg-config software-properties-common && \
+    apt-get -y purge $BUILD_PACKAGES && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
