@@ -1,12 +1,15 @@
 FROM ubuntu:20.04
 
-ENV PHP=7.0 \
+ENV PHP=8.1 \
     ADMINER=4.8.1 \
     SERVERNAME=dev-php.local \
     WORKDIR=/var/www/dev-php \
     DOCROOT=/var/www/dev-php/public \
     DEBIAN_FRONTEND=noninteractive \
-    BUILD_PACKAGES=software-properties-common
+    BUILD_PACKAGES=software-properties-common \
+    TINI_VERSION v0.19.0
+
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 
 COPY files/ /
 
