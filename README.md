@@ -90,6 +90,7 @@ posix
 readline
 redis
 Reflection
+rdkafka
 session
 shmop
 SimpleXML
@@ -99,6 +100,7 @@ sodium
 SPL
 sqlite3
 standard
+swoole
 sysvmsg
 sysvsem
 sysvshm

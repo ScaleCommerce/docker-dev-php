@@ -1,13 +1,13 @@
 FROM ubuntu:20.04
 
-ENV PHP=8.1 \
+ENV PHP=8.2 \
     ADMINER=4.8.1 \
     SERVERNAME=dev-php.local \
     WORKDIR=/var/www/dev-php \
     DOCROOT=/var/www/dev-php/public \
     DEBIAN_FRONTEND=noninteractive \
     BUILD_PACKAGES=software-properties-common \
-    TINI_VERSION v0.19.0
+    TINI_VERSION=v0.19.0
 
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 
@@ -16,7 +16,6 @@ COPY files/ /
 RUN apt-get update && \
     apt-get -y install --no-install-recommends $BUILD_PACKAGES && \
     add-apt-repository ppa:ondrej/php && \
-    add-apt-repository ppa:openswoole/ppa && \
     apt-get update && \
     apt-get -y dist-upgrade && \
     apt-get -y install --no-install-recommends curl nano ca-certificates unzip git \
@@ -45,8 +44,9 @@ RUN apt-get update && \
     php${PHP}-sqlite3 \
     php${PHP}-xml \
     php${PHP}-vips \
+    php${PHP}-swoole \
+    php${PHP}-rdkafka \
     php${PHP}-zip && \
-    apt-cache pkgnames | grep php${PHP}-openswoole | xargs apt-get -y install --no-install-recommends && \
     a2enmod rewrite && \
     rm -rf /etc/apache2/sites-enabled/000-default.conf /var/www/html && \
     echo 'ServerName $SERVERNAME' >>/etc/apache2/apache2.conf && \
